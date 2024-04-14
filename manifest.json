@@ -1,0 +1,32 @@
+{
+    "manifest_version": 3,
+    "name": "Outback Equipment Searcher",
+    "description": "Outback Equipment Searcher: Administration and Management Tool.",
+    "version": "1.4.0",
+    "background": {
+      "service_worker": "./static/script/background.js"
+    },
+    "permissions": ["contextMenus", "activeTab"],
+   
+    "action": {
+      "default_popup": "./static/html/hello.html",
+      "default_icon": "./static/img/extension_logo.png"
+    },
+
+    "icons": {
+      "16": "./static/img/icon-bitty.png",
+      "48": "./static/img/icon-small.png",
+      "128": "./static/img/icon-large.png"
+    },
+    "content_scripts": [
+      {
+          "matches": ["https://www.outbackequipment.com.au/_cpanel/products/view?*"],
+          "js": ["./static/script/products_neto.js"]
+      },
+      {
+        "matches": ["https://www.outbackequipment.com.au/*"],
+        "js": ["./static/script/front-end-url.js"],
+        "exclude_matches": ["https://www.outbackequipment.com.au/_*", "https://www.outbackequipment.com.au/?*"]
+      }
+  ]
+  }
